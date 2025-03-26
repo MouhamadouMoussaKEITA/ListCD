@@ -1,0 +1,83 @@
+<div class="form-container">
+    <section class="subform saisieForm">
+        <h2>Ajouter un CD</h2>
+        <form [formGroup]="formulaire">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <div class="input">
+                    <input type="text" id="title" formControlName="title" />
+                    <div *ngIf="formulaire.get('title')?.invalid 
+                                &&(formulaire.get('title'))?.errors
+                                &&(formulaire.get('title')?.dirty || formulaire.get('title')?.touched)">
+                        <small class="text-danger" *ngIf="formulaire.get('title')?.hasError('minlength')">
+                            Ce champ est requis
+                        </small>
+                        <small class="text-danger" *ngIf="formulaire.get('title')?.hasError('minlength')">
+                            Ce champ doit contenir au moins 3 caractères
+                        </small>
+                    </div>
+                </div>
+                <br>
+
+                <label for="author">Auteur</label>
+                <div class="input">
+                    <input type="text" id="author" formControlName="author" />
+                    <div
+                        *ngIf="formulaire.get('author')?.invalid 
+                                                        &&(formulaire.get('author'))?.errors
+                                                        &&(formulaire.get('author')?.dirty || formulaire.get('author')?.touched)">
+                        <small class="text-danger" *ngIf="formulaire.get('author')?.hasError('minlength')">
+                            Ce champ est requis
+                        </small>
+                        <small class="text-danger" *ngIf="formulaire.get('author')?.hasError('minlength')">
+                            Ce champ doit contenir au moins 3 caractères
+                        </small>
+                    </div>
+                </div>
+                <br>
+
+                <label for="thumbnail">Image</label>
+                <div>
+                    <input type="text" id="thumbnail" formControlName="thumbnail" />
+                    <small
+                        *ngIf="formulaire.get('thumbnail')?.invalid 
+                                                        &&(formulaire.get('thumbnail'))?.errors
+                                                        &&(formulaire.get('thumbnail')?.dirty || formulaire.get('thumbnail')?.touched)">
+                        Ce champ est requis
+                    </small><br>
+                    <small class="text-danger" *ngIf="formulaire.get('thumbnail')?.hasError('pattern')">
+                        Le lien est invalide
+                    </small>
+                </div>
+                <br>
+
+                <label for="dateDeSortie">Date de sortie</label>
+                <input type="date" id="dateDeSortie" formControlName="dateDeSortie" />
+                <br>
+
+                <label for="quantite">Quantité</label>
+                <input type="number" id="quantite" formControlName="quantite" />
+                <br>
+
+                <label for="price">Prix</label>
+                <input type="number" id="price" formControlName="price" />
+                <br>
+                <button type="button" (click)="onSubmit()" [disabled]="formulaire.invalid">Ajouter le CD</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="subform visuForm">
+        <h2>Vue du CD</h2>
+        <div *ngIf="currentCD !== undefined">
+            <div class="cd-card">
+                <h3>{{currentCD.title}}</h3>
+                <p>Sortie le : {{currentCD.dateDeSortie | date: 'dd/MM/yyyy'}} </p>
+                <p>Auteur / groupe : {{currentCD.author}}</p>
+                <p>Prix : {{currentCD.price | currency: 'EUR'}}</p>
+                <p>Quantité : {{currentCD.quantite}}</p>
+                <img [src]="currentCD.thumbnail" alt="{{currentCD.title}}">
+            </div>
+        </div>
+    </section>
+</div>
