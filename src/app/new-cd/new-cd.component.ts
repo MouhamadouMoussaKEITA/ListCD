@@ -9,15 +9,18 @@ import { CD } from '../Models/cd.model';
   styleUrl: './new-cd.component.scss'
 })
 export class NewCDComponent {
-  onSubmit(): void {
-    console.log('CD ajouté avec succès :', this.formulaire.value);
-  }
+
 
   formulaire!: FormGroup;
   currentCD!: CD;
   thumbRegex!: RegExp;
 
   constructor(private formBuilder: FormBuilder) { }
+
+  onSubmit(): void {
+    alert('CD ajouté avec succès !');
+    console.log('CD ajouté avec succès :', this.formulaire.value)
+  }
 
   ngOnInit(): void {
 

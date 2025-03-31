@@ -12,8 +12,8 @@ import { CD } from '../Models/cd.model';
 
 export class ListCDComponent implements OnInit {
   listcd!: CD[];
-constructor(private myCDsService: CdsService) { }
+  constructor(private myCDsService: CdsService) { }
   ngOnInit(): void {
-    this.listcd = this.myCDsService.getCds();
+    this.myCDsService.getCds().subscribe((cds) => { this.listcd = cds; });
   }
 }
