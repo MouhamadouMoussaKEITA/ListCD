@@ -12,11 +12,11 @@ export class CdsService {
   constructor(private http: HttpClient) { }
 
   getCds(): Observable<CD[]> {
-    return this.http.get<CD[]>('https://localhost:3000/CD');
+    return this.http.get<CD[]>('http://localhost:3000/CD');
   }
 
   getCDById(id: number): Observable<CD> {
-    return this.http.get<CD>('https://localhost:3000/CD/' + id);
+    return this.http.get<CD>('http://localhost:3000/CD/' + id);
   }
 
   addCD(nouvCD: CD): Observable<CD> {
@@ -26,7 +26,7 @@ export class CdsService {
       let maxId = 0;
       cds.forEach(cd => { maxId = (cd.id > maxId ? cd.id : maxId); });
       nouvCD.id = maxId + 1;
-      this.http.post<CD>('https://localhost:3000/CD', nouvCD);
+      this.http.post<CD>('http://localhost:3000/CD', nouvCD);
     }
     );
 
@@ -35,7 +35,7 @@ export class CdsService {
         let maxId = 0;
         cds.forEach(cd => { maxId = (cd.id > maxId ? cd.id : maxId); });
         nouvCD.id = maxId + 1;
-        return this.http.post<CD>('https://localhost:3000/CD', nouvCD);
+        return this.http.post<CD>('http://localhost:3000/CD', nouvCD);
       }
       ));
 

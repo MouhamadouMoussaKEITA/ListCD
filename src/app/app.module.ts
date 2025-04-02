@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { ListCDComponent } from './list-cd/list-cd.component';
 import { HomeComponent } from './home/home.component';
 import { NewCDComponent } from './new-cd/new-cd.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,17 @@ import { NewCDComponent } from './new-cd/new-cd.component';
     HeaderComponent,
     ListCDComponent,
     HomeComponent,
-    NewCDComponent
+    NewCDComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule],
+
   providers: [],
   bootstrap: [AppComponent]
 })
